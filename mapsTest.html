@@ -1,0 +1,62 @@
+<html>
+<head>
+
+  <title>Google Maps Multiple Markers</title>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+    <script src="http://maps.google.com/maps/api/js?key=AIzaSyCBYyj0lk0Lp8wR1wxnUGPvkt4caXJAeIs&callback=myMap"sensor=false" type="text/javascript"></script>
+<body>
+
+        <div class="w3-top w3-bar w3-white">
+            <a href="HTMLPage.html" class="w3-bar-item w3-left "><img src="Images/FCI%20Logo%2080x140.jpg"></a>
+  <div class="w3-container"  style="margin-top:60px">
+
+<div id="map" style="height: 450px; width: 800px;">
+</div
+                                                  </div>
+
+
+
+
+
+<script type="text/javascript">
+    var locations = [
+      ['FoodCoast 1', 31.366778, 75.574660,4],
+      ['FoodCoast 2', 31.371480, 75.393681,5],
+      ['FoodCoast 3', 31.252128, 75.531463,3],
+      ['FoodCoast 4', 31.432949, 75.713901,2],
+      ['FoodCaost 5', 31.224020, 75.770801,1]
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 10,
+      center: new google.maps.LatLng(31.366778, 75.574660),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+        }
+      })(marker, i));
+    }
+  </script>
+      <?php include('footer.php') ?>
+</body>
+</html>
